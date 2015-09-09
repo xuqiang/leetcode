@@ -1,5 +1,5 @@
 /*
- * 
+ * 给定有序的数组，求有序数组的连续串
  */ 
 #include <iostream>
 #include <vector>
@@ -49,9 +49,27 @@ void printList( ListNode* p ) {
 	cout << endl;	
 }
 
-
+vector<string> summaryRanges(vector<int>& nums) {		
+	int n = nums.size();
+	int i = 0;
+	vector<string> res;
+	while(i < n) {
+		int j = 1;
+		while( i + j < n && nums[i + j] - nums[i] == j ) j++;
+		
+		if(j == 1) res.push_back( to_string( nums[i] ) );
+		else res.push_back( to_string( nums[i]) + "->" + to_string(nums[i + j - 1])  );
+		
+		i += j;
+	}
+	return res;
+}
 
 int main() {
-
+	vector<int> vec = { 0, 1,2, 3, 5, 7, 8, 9, 10 };
+	vector<string> res = summaryRanges(vec);
+	for(int i = 0; i < res.size(); ++i) {
+		cout << res[i] << endl;
+	}
 	return 0;
 }

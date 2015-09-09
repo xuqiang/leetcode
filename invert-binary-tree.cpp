@@ -53,16 +53,14 @@ void printTree(TreeNode* p) {
 	cout << endl;
 }
 
-void prinList( ListNode* p ) {
+void printList( ListNode* p ) {
 	ListNode* i = p;
 	while(i) {
 		cout << i->val << " ";
 		i = i->next;
 	}
 	cout << endl;	
-}
-
-int main() {
+}int main() {
 	TreeNode* a = new TreeNode(1);	
 	TreeNode* b = new TreeNode(2);	
 	TreeNode* c = new TreeNode(3);	
