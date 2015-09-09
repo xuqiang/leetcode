@@ -3,6 +3,9 @@ Reverse digits of an integer.
 
 Example1: x = 123, return 321
 Example2: x = -123, return -321
+
+主要问题 需要防止整数溢出
+
  */ 
 
 
@@ -13,6 +16,7 @@ using namespace std;
 
 int reverse(int x) {
 	bool ispositive = true;
+	// 这里需要使用long long类型，不然 y = y * -1 无法计算
 	long long y = x;
 	if(y < 0) { 
 		ispositive = false;
