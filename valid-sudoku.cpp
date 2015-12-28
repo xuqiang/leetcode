@@ -14,8 +14,7 @@ using namespace std;
 
 class Solution {
 public:
-	bool isValidSudoku(vector<vector<char> > &board) 
-	{
+	bool isValidSudoku(vector<vector<char> > &board) {
 		vector<vector<bool> > rows(9, vector<bool>(9, false));
 		vector<vector<bool> > cols(9, vector<bool>(9, false));
 		vector<vector<bool> > blocks(9, vector<bool>(9, false));
