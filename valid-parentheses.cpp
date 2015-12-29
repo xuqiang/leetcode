@@ -15,6 +15,7 @@ The brackets must close in the correct order, "()" and "()[]{}" are all valid bu
 
 using namespace std;
 
+
 class Solution {
 public:
 	bool match(char a, char b) {
