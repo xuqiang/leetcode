@@ -2,7 +2,7 @@
 
 Valid Palindrome
 
-Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+Given a string, determine if it is a palindrome回文, considering only alphanumeric characters and ignoring cases.
 
 For example,
 "A man, a plan, a canal: Panama" is a palindrome.
