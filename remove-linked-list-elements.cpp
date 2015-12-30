@@ -10,6 +10,7 @@ Given: 1 --> 2 --> 6 --> 3 --> 4 --> 5 --> 6, val = 6
 Return: 1 --> 2 --> 3 --> 4 --> 5
 
 
+使用“哑节点”记录链表头部
 
 */
 
@@ -34,10 +35,40 @@ using namespace std;
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
-        
+    	ListNode dummy( 0 );
+    	dummy.next = head;
+    	ListNode* pre = &dummy;
+    	ListNode* cur = head;
+    	while(cur) {
+    		if(cur->val == val) {
+    			pre->next = cur->next;
+    		} else {
+    			pre = cur;
+    		}
+    		cur = cur->next;
+    	}
+    	return dummy.next;
     }
 };
 
 int main(int argc, char* argv[]) {
   	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
