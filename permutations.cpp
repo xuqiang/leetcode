@@ -26,9 +26,26 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> permute(vector<int>& nums) {
-        
+    	vector<vector<int> > res;
+    	if(nums.size() == 0) return res;
+    	vector<int> tmp;
+    	cal( nums, 0, res, tmp );
+    	return res;
     }
-};
+    void cal( vector<int>& nums, int index, vector<vector<int> >& res, vector<int>& tmp ) {
+    	if(index == nums.size()) {
+    		res.push_back( tmp );
+    		return ;
+    	}
+    	for(int i = index; i < nums.size(); ++i) {
+    		swap( nums[index], nums[i] );
+    		tmp.push_back( nums[index] );
+    		cal( nums, index + 1, res, tmp );
+    		tmp.pop_back();
+    		swap( nums[index], nums[i] );
+    	}
+    }
+ };
 
 int main(int argc, char* argv[]) {
 	retrun 0;
