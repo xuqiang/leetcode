@@ -39,7 +39,21 @@ using namespace std;
 class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
-        
+        vector<int> res;
+        if(root == NULL) return res;
+        stack<TreeNode*> nstack;
+        nstack.push(root);
+        while( !nstack.empty() ) {
+        	TreeNode* p = nstack.top();
+        	res.push_back( p->val );
+        	nstack.pop();
+
+        	if( p->right ) 
+        		nstack.push(p->right);
+        	if(p->left) 
+        		nstack.push(  p->left );
+        }
+        return res;
     }
 };
 
