@@ -16,6 +16,16 @@ https://zh.wikipedia.org/wiki/%E5%8D%A1%E5%A1%94%E5%85%B0%E6%95%B0
 
 */
 
+#include <string>
+#include <unordered_map>
+#include <vector>
+#include <stack>
+
+#include "common.h"
+
+using namespace std;
+
+
 class Solution {
 public:
 	int numTrees(int n) {
@@ -31,3 +41,7 @@ public:
 	    return res[n];
 	}
 };
+
+int main(int argc, char* argv[]) {
+	return 0;
+}
