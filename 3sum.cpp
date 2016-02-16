@@ -13,6 +13,8 @@ The solution set must not contain duplicate triplets.
     (-1, 0, 1)
     (-1, -1, 2)
 
+排序 两头夹逼
+
 */
 
 
@@ -34,7 +36,29 @@ public:
 
 		sort( nums.begin(), nums.end() );
 		const int target = 0;
-		       
+
+		auto last = nums.end();
+		for(auto i = nums.begin(); i < last - 2; ++i) {
+			auto j = i + 1;			// 查找左侧
+			if( i > nums.begin() && *i == *(i - 1) ) continue;
+			auto k = last - 1;
+			while(j < k) {
+				int tot = *i + *j + *k;
+				if( tot < target ) {
+					++j;
+					while( *j == *(j - 1) && j < k ) ++j;
+				} else if(tot > target) {
+					--k;
+					while( *k == *(k + 1) && j < k ) --k;
+				} else {
+					res.push_back( { *i, *j, *k } );
+					++j;
+					--k;
+					while( *j == *(j - 1) && *k == *(k + 1) && j < k ) ++j;
+				}
+			}
+		}
+		return res;
     }
 };
 
