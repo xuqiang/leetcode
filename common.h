@@ -6,6 +6,11 @@
 #define _COMMON_H_
 
 #include <stdio.h>
+#include <string>
+#include <unordered_map>
+#include <vector>
+#include <unordered_set>
+#include <algorithm>
 
 /**
  * Definition for a binary tree node.
@@ -42,6 +47,11 @@ struct TreeLinkNode {
 	int val;
 	TreeLinkNode *left, *right, *next;
 	TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
+};
+
+struct RandomListNode {
+	int label;
+	RandomListNode *next, *random;
 };
 
 
