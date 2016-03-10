@@ -27,20 +27,32 @@ using namespace std;
 
 class Solution {
 public:
-    string countAndSay(int n) {
-       string prev = "1";
-       while(--n > 0) {
-       	string next;
-       	for(int i = 0; i < prev.size(); ++i) {
-       		int count = 1;
-       		while( (i + 1) < prev.size() && prev[i] == prev[i + 1] ) {
-       			count ++;
-       		} 
-       		next.append( to_string(count) + to_string( prev[i] ) );
-       	}
-       	prev = next;
-       }
-       return prev;
+    string getNext(string &s) 
+    {
+        if(s == "") return "1";
+        string temp = "";
+        for(int i = 0; i < s.size(); i++) {
+            int cnt = 1;
+            while(i+1 < s.size() && s[i] == s[i+1]) {
+                i++;
+                cnt++;
+            }
+            stringstream ss;
+            ss << cnt;
+            temp += ss.str();
+            temp += s[i];
+        }
+        return temp;
+    }
+    string countAndSay(int n) 
+    {
+        string s = "";
+        if(n == 0) return s;
+ 
+        for(int i = 0; i < n; i++) {
+            s = getNext(s);            
+        }           
+        return s;
     }
 };
 
