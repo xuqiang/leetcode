@@ -26,19 +26,34 @@ Note: next() and hasNext() should run in average O(1) time and uses O(h) memory,
  * };
  */
 class BSTIterator {
+private:
+	std::stack<TreeNode*> stack;
 public:
     BSTIterator(TreeNode *root) {
-        
+        while(root != nullptr) {
+        	stack.push(root);
+        	root = root->left;
+        }
     }
 
     /** @return whether we have a next smallest number */
     bool hasNext() {
-        
+        return ! (stack.empty());
     }
 
     /** @return the next smallest number */
     int next() {
-        
+        TreeNode* current = stack.top();
+        int retval = current->val;
+        stack.pop();
+        current = current->right;
+
+       	while( current != nullptr ) {
+       		stack.push(current);
+       		current = current->left;
+       	}
+
+       	return retval;
     }
 };
 
