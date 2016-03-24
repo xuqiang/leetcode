@@ -35,14 +35,36 @@ using namespace std;
  * };
  */
 class Solution {
-public:
-    vector<TreeNode*> generateTrees(int n) {
-        
-    }
-};
+    private:
+        vector<vector<vector<TreeNode*>>> cache;
+    public:
+        vector<TreeNode*> generateTrees(int n){
+            if(n==0) return vector<TreeNode*>{};
+            cache = vector<vector<vector<TreeNode*>>>(n + 1, vector<vector<TreeNode*>>(n + 1, vector<TreeNode*>{}));
+            return generateTrees(1, n);
+        }
+        vector<TreeNode*> generateTrees(int start, int end){
+            if (start >= 0 && start<cache.size() && end >= 0 && end<cache[0].size() && !cache[start][end].empty())
+                return cache[start][end];
+            vector<TreeNode*> cur;
+            if (start > end){
+                return vector<TreeNode*>{nullptr};
+            }
+            for (int i = start; i <= end; i++){
 
-
-int main(int argc, char* argv[]) {
-	return 0;
-}
+                vector<TreeNode*> left = generateTrees(start, i - 1);
+                vector<TreeNode*> right = generateTrees(i + 1, end);
+                for (auto l : left){
+                    for (auto r : right){
+                        TreeNode* root = new TreeNode(i);
+                        root->left = l;
+                        root->right = r;
+                        cur.push_back(root);
+                    }
+                }
+            }
+            cache[start][end] = cur;
+            return cur;
+        }
+    };
 
