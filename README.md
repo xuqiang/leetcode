@@ -1,4 +1,4 @@
-# leetcode 解题报告
+# leetcode 
 
 
 ![screen](./screen.gif)
