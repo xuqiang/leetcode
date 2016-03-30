@@ -1,34 +1,32 @@
 /*
- 
- Median of Two Sorted Arrays
 
- There are two sorted arrays nums1 and nums2 of size m and n respectively. 
- Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
+Median of Two Sorted Arrays
 
- 更一般的问题 需找两个排序数数组的第k大元素
 
- 1. 通常解法，归并排序 复杂度o(n)
- 2. 
 
 */
 
-#include <iostream>
-#include <vector>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include "common.h"
-
-using namespace std;
 
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-        const int m = nums1.size();
+        int total = nums1.size() + nums2.size();
+        if (total % 2 == 1) {
+            return findKth(nums1, 0, nums2, 0, total / 2 + 1);
+        } else {
+            return (findKth(nums1, 0, nums2, 0, total / 2) + findKth(nums1, 0, nums2, 0, total / 2 + 1)) / 2;
+        }
+    }
+    double findKth(vector<int> &nums1, int i, vector<int> &nums2, int j, int k) {
+        if (nums1.size() - i > nums2.size() - j) return findKth(nums2, j, nums1, i, k);
+        if (nums1.size() == i) return nums2[j + k - 1];
+        if (k == 1) return min(nums1[i], nums2[j]);
+        int pa = min(i + k / 2, int(nums1.size())), pb = j + k - pa + i;
+        if (nums1[pa - 1] < nums2[pb - 1]) 
+            return findKth(nums1, pa, nums2, j, k - pa + i);
+        else if (nums1[pa - 1] > nums2[pb - 1]) 
+            return findKth(nums1, i, nums2, pb, k - pb + j);
+        else 
+            return nums1[pa - 1];
     }
 };
-
-
-int main(int argc, char* argv[]) {
-	return 0;
-}
