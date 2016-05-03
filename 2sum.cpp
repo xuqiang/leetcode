@@ -50,7 +50,6 @@ public:
     }
 };
 
-
 int main(int argc, char* argv[]) {
 	vector<int> numbers = { 3, 2, 4 };
 	Solution s;
