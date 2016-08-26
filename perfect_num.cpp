@@ -36,11 +36,11 @@ bool is_square_num(int m){
 // 对于每一位 如果该位是1 ，分两类 改位取1 或者不取1
 // 如果不取1 这是剩余位数考虑排列组合
 // 如果取1 问题可以继续转化成子问题
-// 最后问题可以归结为最后一位 如果是1 那么可以取0/1 如果是0 只能取0
+// 最后一位单独处理
 int get_perfect_num(int n) {
 	if(n == 1) return 1;
 	// 假设整数是32位
-	int square_nums[] = { 1, 4, 8, 16, 25 };
+	int square_nums[] = { 1, 4, 9, 16, 25 };
 	int len = sizeof( square_nums ) / sizeof(int);
 	int res = 0;
 	int bit_num = get_bit_num(n);
@@ -66,10 +66,27 @@ int get_perfect_num(int n) {
 	return res;
 }
 
+// 暴力解法
+int get_perfect_num2(int n) {
+	int res = 0;
+	for(int i = 1; i <= n; ++i) {
+		std::bitset<32> b(i);
+		if( is_square_num(b.count()) ) {
+			res ++;
+		}
+	}
+	return res;
+}
+
 int main() {
-	for(int i = 0; i < 26; ++i) {
-		cout << i << " " << get_perfect_num(i)	<< endl;
-		cout << ">>>>>>>>>>>>>>>>>>" << endl;
+	for(int i = 0; i < 1000; ++i) {
+		
+		if( get_perfect_num(i) != get_perfect_num2(i) ) {
+			cout << "error case" << get_perfect_num(i) << " " << get_perfect_num2(i) << endl;
+		} else {
+			cout << i << " " << get_perfect_num(i)	<< endl;
+			cout << ">>>>>>>>>>>>>>>>>>" << endl;
+		}
 	}
 	return 0;
 };
